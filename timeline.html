@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="icon" type="image/png" href="./img/CILKGax.png">
+        <!-- Tiêu đề của trang dòng thời gian -->
+		<title>Lưu bút</title>	    
+        <link type="text/css" rel="stylesheet" href="./css/default.css">
+        <link rel="stylesheet" href="./css/style.css">
+		<script type="text/javascript" src="./js/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/jscex.min.js"></script>
+		<script type="text/javascript" src="./js/jscex-parser.js"></script>
+		<script type="text/javascript" src="./js/jscex-jit.js"></script>
+		<script type="text/javascript" src="./js/jscex-builderbase.min.js"></script>
+		<script type="text/javascript" src="./js/jscex-async.min.js"></script>
+		<script type="text/javascript" src="./js/jscex-async-powerpack.min.js"></script>
+		<script type="text/javascript" src="./js/functions.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/love.js" charset="utf-8"></script>
+	    <style type="text/css"></style>
+
+</head>
+    <body>
+        <div class="buttons">
+            <a href="index.html" class="btn btn-bir">Hy vọng</a>
+            <a href="timeline.html" class="btn btn-timeline">Lưu bút</a>
+            <a href="gallery.html" class="btn btn-gallery">Hồi ức</a>
+        </div>
+        <div id="main">
+             <div id="wrap">
+                <div id="text">
+			        <div id="code">
+					<!-- 4. CHỈNH SỬA LỜI CHÚC CỦA BẠN TẠI ĐÂY-->
+			      <font color="#3500ff"><span class="say">Lưu bút ký ức (1/4/2024)</span><br>
+						<span class="say">Một cánh cửa đã mở ra, cũng là lúc chị của em sẽ vươn ra biển xa đầy gian truân, thử thách</span><br>
+						<span class="say">Giờ đây, chị sẽ bước ra khỏi vùng an toàn của gia đình, chinh phục những thử thách mới.</span><br>
+						<span class="say">Dẫu biết rằng đây là hành trình của chị, nhưng lòng em không khỏi xao xuyến và lo lắng</span><br>
+						<span class="say">Em chỉ biết khóc âm thầm, để phải nói lời chia xa, em đã đánh mất bao nhiêu câu chuyện buồn vui của chị với em </span><br>
+						<span class="say">Chị em đã cho thấy rằng: "Chị là người thật dũng cảm". Tình yêu, hạnh phúc chị cũng phải nói lời buôn bỏ</span><br>
+						<span class="say">Để lo lắng, hy sinh cho em và gia đình</span><br>
+						<span class="say">Chị à, chị qua bên Nhật đừng lo lắng nhé! Em sẽ ở đây lo lắng và chăm sóc cho cha mẹ thay chị</span><br>
+						<span class="say">Luôn luôn mạnh mẽ giống như thân cây đứng vững trên bão táp và sa mạc</span><br>
+						<span class="say">Bây giờ, em chỉ biết nói là "XIN LỖI CHỊ" và "CẢM ƠN CHỊ" đã trao tặng tình yêu quý báu</span><br>
+						<span class="say">Và em thật may mắn và tự hào rằng là khi em có người chị đầy năng khiếu, nụ cười ấm áp, luôn cho em bao nhiêu ký ức. </3></span><br>
+						<span class="say">Em và chị cũng nhau thực hiện ước mơ của bản thân, để cho ba và mẹ đỡ khổ và luôn biết mạnh mẽ, không lo âu</span><br>
+						<span class="say">Nhớ lắm những lời khuyên của chị, những giây phút cười vui và những lúc ôm nhau khóc thầm, những lời bí mật......</span><br>
+						<span class="say">Những lúc chị bệnh, em không còn lo lắng và chăm sóc cho chị ở phương trời xa, mà giờ chị phải trưởng thành và tự làm hết rồi. Khi không có em chị nhớ luôn hạnh phúc, đừng có áp lực nhe!</span><br>
+                        <span class="say"><span class="space"></span> -- Em yêu chị hai nhiều lắm 💖💖💖 --</span>
+			  </font></p>
+      </div>
+                </div>
+                <div id="clock-box">
+					<span class="STYLE1"> Hồi ức thời gian </span>  <!--Có thể thay đổi chổ này thành số tuổi của người bạn muốn chúc -->
+                  <div id="clock"></div>
+              </div>
+                <canvas id="canvas" width="10000" height="680"></canvas>
+            </div>
+            
+        </div>
+
+    <!-- Phần nhạc -->
+    <audio id="player" autoplay loop>
+        <source src="../music/Kiss the Rain  Yiruma.mp3" type="audio/mp3" />
+    </audio>
+    <script>
+    (function(){
+        var canvas = $('#canvas');
+		
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;        }
+
+        var width = canvas.width();
+        var height = canvas.height();        
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]] 
+            ],
+            bloom: {
+                num: 700,
+                width: 1080,
+                height: 650,
+            },
+            footer: {
+                width: 1200,
+                height: 5,
+                speed: 10,
+            }
+        }
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function(e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0; 
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function(e){
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+    	        tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+    	        tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        var textAnimate = eval(Jscex.compile("async", function () {
+		    var together = new Date();
+		    var year = 2009, month = 11, day = 24;  // 5. thay đổi ngày tháng năm yêu nhau tại đây hoặc ngày sinh của người mà bạn muốn chúc
+		    together.setFullYear(year, month - 1, day); 			
+		    together.setHours(0);							
+		    together.setMinutes(0);				
+		    together.setSeconds(0);					
+		    together.setMilliseconds(0);			
+
+		    $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+            while (true) {
+                timeElapse(together);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+
+        runAsync().start();
+    })();
+    </script>
+</div>
+</body>
+</html>
